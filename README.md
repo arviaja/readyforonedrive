@@ -14,4 +14,4 @@ Run the command with '''python3 readyforonedrive.py'''
 Add the folder you want to correct (it will also run through subfolders)
 Choose dry run (y) or real stuff (n) to get going
 
-** Use at your own risk **
+**Use at your own risk**

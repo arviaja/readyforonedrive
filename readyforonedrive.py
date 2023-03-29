@@ -13,6 +13,11 @@ os.chdir(os.path.expanduser(dropbox_path))
 # Ask the user if they want to do a dry run
 dry_run = input("Do you want to do a dry run? (y/n): ").lower() == "y"
 
+# ANSI escape codes for red and blue text
+RED_TEXT = "\033[31m"
+BLUE_TEXT = "\033[34m"
+RESET_TEXT = "\033[0m"
+
 # Find all files and directories with paths longer than the maximum allowed length
 for dirpath, dirnames, filenames in os.walk(".", topdown=False):
     for name in filenames + dirnames:
@@ -26,8 +31,8 @@ for dirpath, dirnames, filenames in os.walk(".", topdown=False):
             new_file_name = file_path[:len(file_path) - num_chars_to_remove]
 
             if dry_run:
-                # Print the proposed new file name
-                print(f"Dry run: Would shorten {file_path} to {new_file_name}")
+                # Print the proposed new file name in color
+                print(f"Renaming {RED_TEXT}{file_path}{RESET_TEXT} to {BLUE_TEXT}{new_file_name}{RESET_TEXT}")
             else:
                 # Rename the file or directory
                 os.rename(file_path, new_file_name)
@@ -43,8 +48,8 @@ for dirpath, dirnames, filenames in os.walk(".", topdown=False):
         if new_file_name != name:
             new_file_path = os.path.join(dirpath, new_file_name)
             if dry_run:
-                # Print the proposed new file name
-                print(f"Dry run: Would rename {file_path} to {new_file_path}")
+                # Print the proposed new file name in color
+                print(f"Renaming {RED_TEXT}{file_path}{RESET_TEXT} to {BLUE_TEXT}{new_file_path}{RESET_TEXT}")
             else:
                 # Rename the file or directory
                 os.rename(file_path, new_file_path)
